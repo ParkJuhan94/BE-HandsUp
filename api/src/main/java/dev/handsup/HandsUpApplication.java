@@ -12,11 +12,6 @@ import jakarta.annotation.PostConstruct;
 @SpringBootApplication
 public class HandsUpApplication {
 
-	@PostConstruct
-	public void started() {
-		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
-	}
-
 	public static void main(String[] args) {
 		// 타 모듈 yml 가져오기
 		System.setProperty("spring.config.name", "application, application-core");

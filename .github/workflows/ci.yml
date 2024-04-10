@@ -1,10 +1,8 @@
 name: CI Backend
 
 on:
-  push:
-    branches: [ "main", "dev" ]
   pull_request:
-    branches: [ "main", "dev" ]
+    branches: ["main", "dev"]
 
 permissions:
   contents: read
@@ -28,6 +26,19 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      # firebase json 파일 생성
+      - name : Generate firebase_account.json
+        run: |
+          mkdir -p ./core/src/main/resources/firebase
+          echo "${{ secrets.FIREBASE_ACCOUNT }}" | base64 -d > ./core/src/main/resources/firebase/firebase_account.json
+          mkdir -p ./core/src/test/resources/firebase
+          echo "${{ secrets.FIREBASE_ACCOUNT }}" | base64 -d > ./core/src/test/resources/firebase/firebase_account.json
+
+      # gradle 권한 부여
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+        shell: bash
+
       # 빌드 시 캐시 적용
       - name: Gradle Caching
         uses: actions/cache@v3
@@ -38,11 +49,6 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-
-      # gradle 권한 부여
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
-        shell: bash
 
       # 빌드
       - name: Build with Gradle
