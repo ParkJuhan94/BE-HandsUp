@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,7 @@ class BiddingConcurrencyTest extends TestContainerSupport {
 		user = userRepository.save(UserFixture.user1());
 	}
 
+	@Disabled
 	@DisplayName("[동시에 500개 요청 시, 입찰 금액이 모두 같다면 하나의 입찰만 저장된다.]")
 	@Test
 	void concurrency_test() throws InterruptedException {

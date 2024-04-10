@@ -4,11 +4,16 @@ import lombok.Getter;
 
 @Getter
 public enum CacheType {
+
 	AUCTIONS(
-		"auctions",      	// 캐시 이름: users
-		10 * 60,       				// 만료 시간: 5 분
-		10000         				// 최대 갯수: 10000
+		"auctions",        // 캐시 이름: users
+		10 * 60,                    // 만료 시간: 5 분
+		10000                        // 최대 갯수: 10000
 	);
+
+	private final String cacheName;
+	private final int expireAfterWrite;
+	private final int maximumSize;
 
 	CacheType(
 		String cacheName,
@@ -19,8 +24,4 @@ public enum CacheType {
 		this.expireAfterWrite = expireSecondsAfterWrite;
 		this.maximumSize = maximumSize;
 	}
-
-	private final String cacheName;
-	private final int expireAfterWrite;
-	private final int maximumSize;
 }

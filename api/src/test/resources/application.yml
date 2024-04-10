@@ -26,4 +26,4 @@ cloud:
       auto: false
 
 fcm:
-  certification: firebase/firebase_service_account.json
+  certification: firebase/firebase_account.json

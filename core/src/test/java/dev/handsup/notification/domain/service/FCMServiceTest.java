@@ -1,6 +1,5 @@
 package dev.handsup.notification.domain.service;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.*;
 
@@ -15,11 +14,9 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingException;
 
 import dev.handsup.auction.domain.Auction;
-import dev.handsup.common.exception.NotFoundException;
 import dev.handsup.fixture.AuctionFixture;
 import dev.handsup.fixture.UserFixture;
 import dev.handsup.notification.domain.NotificationType;
-import dev.handsup.notification.exception.NotificationErrorCode;
 import dev.handsup.notification.repository.FCMTokenRepository;
 import dev.handsup.notification.service.FCMService;
 import dev.handsup.notification.service.NotificationService;
