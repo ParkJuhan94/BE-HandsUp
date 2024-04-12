@@ -76,13 +76,8 @@ jobs:
           password: ${{ secrets.EC2_PASSWORD }}
           port: ${{ secrets.EC2_PORT }}
           script: |
+            cd compose
+            docker rm -f $(docker ps -qa)
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APP_NAME }} 
-            docker stop ${{ secrets.DOCKERHUB_APP_NAME }}
-            docker rm ${{ secrets.DOCKERHUB_APP_NAME }}
-            docker run -d \
-            -p 8080:8080 \
-            -e TZ=Asia/Seoul \
-            --name ${{ secrets.DOCKERHUB_APP_NAME }} \
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APP_NAME }}
-            
+            docker-compose up -d
             docker system prune -f
