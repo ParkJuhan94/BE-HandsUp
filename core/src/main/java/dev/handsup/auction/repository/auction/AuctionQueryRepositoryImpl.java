@@ -102,14 +102,14 @@ public class AuctionQueryRepositoryImpl implements AuctionQueryRepository {
 		queryFactory
 			.update(auction)
 			.set(auction.status, AuctionStatus.CANCELED)
-			.where(auction.endDate.eq(LocalDate.now().minusDays(1)),
+			.where(auction.endDate.lt(LocalDate.now()),
 				auction.biddingCount.eq(0))
 			.execute();
 
 		queryFactory
 			.update(auction)
 			.set(auction.status, AuctionStatus.TRADING)
-			.where(auction.endDate.eq(LocalDate.now().minusDays(1)),
+			.where(auction.endDate.lt(LocalDate.now()),
 				auction.biddingCount.goe(1))
 			.execute();
 	}
