@@ -1,4 +1,4 @@
-rootProject.name = 'BE-handsup'
+rootProject.name = 'BE-HandsUp'
 
 include 'api'
 include 'core'
