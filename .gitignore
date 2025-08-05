@@ -46,3 +46,4 @@ core/src/main/resources/application-core-local.yml
 /core/src/main/resources/firebase/firebase_account.json
 /core/src/test/resources/firebase/firebase_account.json
 /api/src/test/resources/firebase/firebase_account.json
+/event/src/test/resources/firebase/firebase_account.json
