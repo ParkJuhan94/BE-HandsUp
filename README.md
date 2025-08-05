@@ -1,4 +1,5 @@
-Forked from [Programmers-HandsUp/BE-handsup](https://github.com/Programmers-HandsUp/BE-handsup)
+기존의 백엔드 협업 Repository 👉🏻 [Programmers-HandsUp/BE-handsup](https://github.com/Programmers-HandsUp/BE-handsup)
+프론트엔드 Repository 👉🏻 https://github.com/Programmers-HandsUp/FE-HandsUp
 
 [![CI Backend](https://github.com/ParkJuhan94/BE-handsup/actions/workflows/ci.yml/badge.svg)](https://github.com/ParkJuhan94/BE-handsup/actions/workflows/ci.yml)
 
