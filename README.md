@@ -1,6 +1,5 @@
-기존의 백엔드 협업 Repository 👉🏻 [Programmers-HandsUp/BE-handsup](https://github.com/Programmers-HandsUp/BE-handsup)
-프론트엔드 Repository 👉🏻 https://github.com/Programmers-HandsUp/FE-HandsUp
-
+#### 백엔드 협업 Repository 👉🏻 [Programmers-HandsUp/BE-handsup](https://github.com/Programmers-HandsUp/BE-handsup)
+#### 프론트엔드 Repository 👉🏻 https://github.com/Programmers-HandsUp/FE-HandsUp
 [![CI Backend](https://github.com/ParkJuhan94/BE-handsup/actions/workflows/ci.yml/badge.svg)](https://github.com/ParkJuhan94/BE-handsup/actions/workflows/ci.yml)
 
 <br>
@@ -38,18 +37,12 @@
 
 ## 🛠️ 기술 스택
 
-- **Backend** :
-  - Java 17, Spring Boot 3 (JPA, Validation, Security, QueryDSL)
-- **Messaging** :
-  - Kafka
-- **Database & Infra** :
-  - MySQL, Redis, Docker, AWS EC2
-- **테스트 및 품질 관리** :
-  - JUnit 5, Mockito, Testcontainers, k6, grafana, Postman
-- **CI/CD & 협업** :
-  - GitHub Actions, Git, GitHub, Slack, Notion
-- **기타 기술** :
-  - JWT, Swagger, Firebase Cloud Messaging
+- **Backend** : Java 17, Spring Boot 3 (JPA, Validation, Security, QueryDSL)
+- **Messaging** : Kafka
+- **Database & Infra** : MySQL, Redis, Docker, AWS EC2
+- **테스트 및 품질 관리** : JUnit 5, Mockito, Testcontainers, k6, grafana, Postman
+- **CI/CD & 협업** : GitHub Actions, Git, GitHub, Slack, Notion
+- **기타 기술** : JWT, Swagger, Firebase Cloud Messaging
 
 <br>
 
