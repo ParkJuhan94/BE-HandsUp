@@ -6,11 +6,12 @@
 <br>
 
 ## 📢 프로젝트 소개
-
+> 사용자가 물품을 등록하고 입찰하며, 채팅을 통해 거래할 수 있는 웹 애플리케이션입니다.
 <div align="left">
   <img width="600" alt="image" src="https://github.com/Programmers-HandsUp/BE-handsup/assets/77109954/8e3b8727-a732-4b9c-a575-c2bdca9f576b">
 </div>
 <br>
+
 
 ## 📁 멀티 모듈 구조
 
