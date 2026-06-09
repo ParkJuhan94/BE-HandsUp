@@ -8,20 +8,22 @@ spring:
         default_batch_fetch_size: 10
   kafka:
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: ${spring.embedded.kafka.brokers:localhost:9092}
+    consumer:
+      bootstrap-servers: ${spring.embedded.kafka.brokers:localhost:9092}
+    admin:
+      bootstrap-servers: ${spring.embedded.kafka.brokers:localhost:9092}
 
 logging:
   level:
-    root: info
-    org.springframework: info
-    org.hibernate: info
+    root: WARN
     org.hibernate.SQL: debug
-    org.hibernate.tool.hbm2ddl: debug
-    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.hibernate.orm.jdbc.bind: trace
 
 jwt:
   secret: prgrmsdevcoursehandsupjsonwebtokensecretkeytest123
   token-validity-in-seconds: 1800
+
 cloud:
   aws:
     credentials:
@@ -36,3 +38,11 @@ cloud:
 
 fcm:
   certification: firebase/firebase_account.json
+
+notification:
+  slack:
+    webhook-url: https://hooks.slack.com/test
+
+openai:
+  api:
+    key: sk-proj-test
