@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: false
+
+logging:
+  level:
+    root: warn
+    org.springframework: warn
+    org.hibernate: warn
+    org.hibernate.SQL: warn
+    co.elastic.clients: warn
+    org.springframework.data.elasticsearch: warn

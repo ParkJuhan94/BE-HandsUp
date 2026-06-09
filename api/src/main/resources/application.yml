@@ -1,0 +1,87 @@
+spring:
+  application:
+    name: be-handsup
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:handsup_dev}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_ROOT_PASSWORD}
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  kafka:
+    consumer:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092}
+      auto-offset-reset: earliest
+    producer:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092}
+    admin:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092}
+    listener:
+      missing-topics-fatal: false
+    retry:
+      topic:
+        enabled: true
+
+server:
+  port: 8080
+
+elasticsearch:
+  host: ${ELASTICSEARCH_HOST:localhost}
+  port: ${ELASTICSEARCH_PORT:9200}
+
+logging:
+  level:
+    root: info
+    org.springframework: info
+    org.hibernate: info
+    org.hibernate.SQL: debug
+    org.hibernate.tool.hbm2ddl: debug
+    co.elastic.clients: debug
+    org.springframework.data.elasticsearch: debug
+
+event:
+  kafka:
+    enabled: true
+
+fcm:
+  certification: firebase/firebase_account.json
+
+notification:
+  slack:
+    webhook-url: ${SLACK_WEBHOOK_URL}
+
+openai:
+  api:
+    key: ${OPENAI_API_KEY}
+
+cloud:
+  aws:
+    credentials:
+      access-key: ${CLOUD_AWS_CREDENTIALS_ACCESS_KEY}
+      secret-key: ${CLOUD_AWS_CREDENTIALS_SECRET_KEY}
+    region:
+      static: ${CLOUD_AWS_REGION_STATIC:ap-northeast-2}
+    s3:
+      bucket: ${CLOUD_AWS_S3_BUCKET:handsup-bucket}
+    stack:
+      auto: false
+
+jwt:
+  secret: ${JWT_SECRET}
+  token-validity-in-seconds: 864000

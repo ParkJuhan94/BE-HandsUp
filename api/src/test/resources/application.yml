@@ -14,17 +14,21 @@ spring:
       bootstrap-servers: ${spring.embedded.kafka.brokers}
     admin:
       bootstrap-servers: ${spring.embedded.kafka.brokers}
+
 event:
   kafka:
     enabled: false
-logging.level:
-  root: WARN
-  org.hibernate.SQL: debug
-  org.hibernate.orm.jdbc.bind: trace
+
+logging:
+  level:
+    root: WARN
+    org.hibernate.SQL: debug
+    org.hibernate.orm.jdbc.bind: trace
 
 jwt:
   secret: prgrmsdevcoursehandsupjsonwebtokensecretkeytest123
   token-validity-in-seconds: 1800
+
 cloud:
   aws:
     credentials:

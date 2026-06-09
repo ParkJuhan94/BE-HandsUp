@@ -36,9 +36,7 @@ out/
 ### VS Code ###
 .vscode/
 .DS_Store
-api/src/main/resources/application.yml
-api/src/main/resources/application-local.yml
-core/src/main/resources/application-core-local.yml
+
 /core/src/main/generated/
 .env
 
