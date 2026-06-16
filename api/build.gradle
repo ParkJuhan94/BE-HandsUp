@@ -20,6 +20,9 @@ dependencies {
     // --- Local Cache (Caffeine) ---
     implementation 'com.github.ben-manes.caffeine:caffeine:3.1.8'
 
+    // --- Dotenv (로컬 .env 파일 자동 로드) ---
+    runtimeOnly 'me.paulschwarz:spring-dotenv:4.0.0'
+
     // --- Kafka For Test ---
     testImplementation 'org.springframework.kafka:spring-kafka-test'
 }
