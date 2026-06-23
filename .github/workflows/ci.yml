@@ -1,8 +1,6 @@
 name: ⚙️ CI Backend
 
 on:
-  #  push:
-  #    branches: [ "*" ]
   pull_request:
     branches: [ "main", "dev" ]
 
@@ -22,8 +20,6 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-          MYSQL_USER: ${{ secrets.MYSQL_USER }}
-          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
       redis:
         image: redis:latest
         ports:
@@ -46,17 +42,11 @@ jobs:
       TZ: 'Asia/Seoul'
       MYSQL_HOST: localhost
       MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-      MYSQL_USER: ${{ secrets.MYSQL_USER }}
-      MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
       MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-      #      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #      AWS_REGION: ${{ secrets.AWS_REGION }}
-      #      AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
     steps:
       # 1. 체크아웃
       - name: Checkout source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # 2. 시간 설정
       - name: Check the timezone
@@ -64,7 +54,7 @@ jobs:
 
       # 3. 자바 버전 설정
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
@@ -73,7 +63,7 @@ jobs:
       - name: Generate firebase_account.json
         run: |
           mkdir -p ./core/src/main/resources/firebase
-          echo "${{ secrets.FIREBASE_ACCOUNT }}" | base64 -d > ./core/src/main/resources/firebase/firebase_account.json          
+          echo "${{ secrets.FIREBASE_ACCOUNT }}" | base64 -d > ./core/src/main/resources/firebase/firebase_account.json
           mkdir -p ./core/src/test/resources/firebase
           echo "${{ secrets.FIREBASE_ACCOUNT }}" | base64 -d > ./core/src/test/resources/firebase/firebase_account.json
           mkdir -p ./api/src/test/resources/firebase
@@ -113,13 +103,6 @@ jobs:
         if: always()
         with:
           report_paths: '**/build/test-results/test/TEST-*.html'
-
-      - name: Checkout source code
-        uses: actions/checkout@v3
-
-      #      # 10. JaCoCo 리포트 생성
-      #      - name: Generate JaCoCo Report
-      #        run: ./gradlew test jacocoTestReport
 
       # 10. Codecov 업로드
       - name: Upload coverage to Codecov
