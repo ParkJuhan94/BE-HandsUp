@@ -1,5 +1,5 @@
 # 실행 단계
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /app
 ARG JAR_FILE=api/build/libs/api-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} /app/app.jar
