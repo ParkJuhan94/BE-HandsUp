@@ -28,6 +28,10 @@ dependencies {
 }
 
 // --- 빌드 설정 ---
+tasks.named('bootRun') {
+    workingDir = rootProject.projectDir  // spring-dotenv가 루트의 .env를 찾도록
+}
+
 tasks.named('bootJar') {
     enabled = true
 }
