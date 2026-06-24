@@ -1,0 +1,61 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: hands-up-redis
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_data:/data
+    restart: always
+    command: [ "redis-server", "--requirepass", "${REDIS_HOST_PASSWORD}" ]
+
+  mysql:
+    image: mysql:8.0
+    container_name: hands-up-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  app:
+    image: ${DOCKERHUB_USERNAME}/${DOCKERHUB_APP_NAME}:latest
+    volumes:
+      - ./gc-logs:/logs
+    container_name: hands-up-app
+    ports:
+      - "8080:8080"
+    environment:
+      TZ: Asia/Seoul
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://hands-up-mysql:3306/${MYSQL_DATABASE}
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      SPRING_DATA_REDIS_HOST: hands-up-redis
+      SPRING_DATA_REDIS_PORT: 6379
+      SPRING_DATA_REDIS_PASSWORD: ${REDIS_HOST_PASSWORD}
+      KAFKA_BOOTSTRAP_SERVERS: ${KAFKA_BOOTSTRAP_SERVERS}
+      CLOUD_AWS_CREDENTIALS_ACCESS_KEY: ${CLOUD_AWS_CREDENTIALS_ACCESS_KEY}
+      CLOUD_AWS_CREDENTIALS_SECRET_KEY: ${CLOUD_AWS_CREDENTIALS_SECRET_KEY}
+      CLOUD_AWS_REGION_STATIC: ${CLOUD_AWS_REGION_STATIC}
+      CLOUD_AWS_S3_BUCKET: ${CLOUD_AWS_S3_BUCKET}
+      JWT_SECRET: ${JWT_SECRET}
+      SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    restart: always
+    depends_on:
+      - redis
+      - mysql
+
+volumes:
+  redis_data:
+  mysql_data:

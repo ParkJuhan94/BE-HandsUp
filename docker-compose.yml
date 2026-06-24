@@ -50,39 +50,6 @@ services:
       - kafka_data:/var/lib/kafka/data
     restart: always
 
-  app:
-    image: ${DOCKERHUB_USERNAME}/${DOCKERHUB_APP_NAME}:latest
-    #    build:
-    #      context: .
-    #      dockerfile: Dockerfile
-    volumes:
-      - ./gc-logs:/logs
-    container_name: hands-up-app
-    ports:
-      - "8080:8080"
-    environment:
-      TZ: Asia/Seoul
-      SPRING_PROFILES_ACTIVE: prod
-      SPRING_DATASOURCE_URL: jdbc:mysql://hands-up-mysql:3306/${MYSQL_DATABASE}
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      SPRING_DATA_REDIS_HOST: hands-up-redis
-      SPRING_DATA_REDIS_PORT: 6379
-      SPRING_DATA_REDIS_PASSWORD: ${REDIS_HOST_PASSWORD}
-      KAFKA_BOOTSTRAP_SERVERS: ${KAFKA_BOOTSTRAP_SERVERS}
-      CLOUD_AWS_CREDENTIALS_ACCESS_KEY: ${CLOUD_AWS_CREDENTIALS_ACCESS_KEY}
-      CLOUD_AWS_CREDENTIALS_SECRET_KEY: ${CLOUD_AWS_CREDENTIALS_SECRET_KEY}
-      CLOUD_AWS_REGION_STATIC: ${CLOUD_AWS_REGION_STATIC}
-      CLOUD_AWS_S3_BUCKET: ${CLOUD_AWS_S3_BUCKET}
-      JWT_SECRET: ${JWT_SECRET}
-      SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL}
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
-    restart: always
-    depends_on:
-      - redis
-      - mysql
-      - kafka
-
 volumes:
   redis_data:
   mysql_data:

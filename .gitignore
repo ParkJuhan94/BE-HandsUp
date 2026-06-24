@@ -39,6 +39,7 @@ out/
 
 /core/src/main/generated/
 .env
+.env.prod
 
 # FCM
 /core/src/main/resources/firebase/firebase_account.json

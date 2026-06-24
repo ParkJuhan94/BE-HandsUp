@@ -65,7 +65,7 @@ jobs:
       - name: Generate .env file
         run: echo "${{ secrets.ENV_CONTENT }}" > .env
 
-      # 10. EC2 서버로 docker-compose.yml, .env 파일 복사
+      # 10. EC2 서버로 docker-compose.prod.yml, .env 파일 복사
       - name: Copy files to EC2 for docker-compose
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -73,7 +73,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
           port: ${{ secrets.EC2_PORT }}
-          source: "docker-compose.yml,.env"
+          source: "docker-compose.prod.yml,.env"
           target: "~/compose/"
 
       # 11. EC2에서 컨테이너 배포 및 실행
@@ -87,7 +87,7 @@ jobs:
           script: |
             mkdir -p ~/compose
             cd ~/compose
-            docker-compose down
+            docker-compose -f docker-compose.prod.yml down
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APP_NAME }}
-            docker-compose up -d
+            docker-compose -f docker-compose.prod.yml up -d
             docker system prune -f
